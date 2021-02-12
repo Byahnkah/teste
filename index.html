@@ -13,8 +13,11 @@ canvas {
 <script>
 
 var myGamePiece;
+var tileset1;
+
 
 function startGame() {
+    tileset1 = new component(30, 30, "tileset1.png", 0, 0, "image");
     myGamePiece = new component(30, 30, "member.png", 10, 120, "image");
     myGameArea.start();
 }
@@ -22,8 +25,8 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 480;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -71,6 +74,7 @@ function updateGameArea() {
     myGameArea.clear();
     myGamePiece.newPos();
     myGamePiece.update();
+    tileset1.update();
 }
 
 function moveup() {
