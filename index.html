@@ -33,10 +33,10 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        //this.canvas.width = window.innerWidth;
-        //this.canvas.height = window.innerHeight;
-        this.canvas.width = 480;
-        this.canvas.height = 480;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        //this.canvas.width = 480;
+        //this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -48,6 +48,19 @@ var myGameArea = {
     stop : function() {
         clearInterval(this.interval);
     }
+}
+
+myGameArea.context = addEventListener("click", onClick, false);
+
+function onClick(e) {
+    posx = e.clientX;
+    posy = e.clientY;
+    if(posx < 240){
+        console.log("oi")
+    } else {
+        console.log("tchau")
+    }
+    var element = myGameArea.canvas;
 }
 
 function component(width, height, color, x, y, type) {
@@ -89,6 +102,7 @@ function updateGameArea() {
     hueningkai.update();
     arrow.newPos();
     arrow.update();
+    myGameArea.context.fillText("Choose your player",190,320);
 }
 
 function moveleft() {
@@ -107,10 +121,12 @@ function clearmove() {
 }
 </script>
 <div style="text-align:center;width:480px;">
+  <!--
   <img src="upArrow.png" width="55" height="29" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()"><br><br>
   <img src="leftArrow.png" width="29" height="55" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()" style="padding-right: 100px;">
   <img src="rightArrow.png" width="29" height="55" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()"><br><br>
   <img src="downArrow.png" width="55" height="29" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">
+  -->
 </div>
 
 </body>
