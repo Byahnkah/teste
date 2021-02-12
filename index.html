@@ -23,7 +23,7 @@ var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
         this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -100,8 +100,6 @@ function clearmove() {
   <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
   <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
 </div>
-
-<p>The component constructor uses the built-in image object to draw images onto the canvas.</p>
 
 </body>
 </html>
