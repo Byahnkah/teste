@@ -12,21 +12,31 @@ canvas {
 <body onload="startGame()">
 <script>
 
-var myGamePiece;
-var tileset1;
+var soobin;
+var yeonjun;
+var beomgyu;
+var taehyun;
+var hueningkai;
+var arrow;
 
 
 function startGame() {
-    tileset1 = new component(30, 30, "tileset1.png", 0, 0, "image");
-    myGamePiece = new component(30, 30, "member.png", 10, 120, "image");
+    soobin = new component(45, 70, "soobin.png", 70, 200, "image");
+    yeonjun = new component(45, 70, "yeonjun.png", 140, 200, "image");
+    beomgyu = new component(45, 70, "beomgyu.png", 210, 200, "image");
+    taehyun = new component(45, 70, "taehyun.png", 280, 200, "image");
+    hueningkai = new component(45, 70, "hueningkai.png", 350, 200, "image");
+    arrow = new component(30, 30, "arrow.png", 80, 160, "image");
     myGameArea.start();
 }
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        //this.canvas.width = window.innerWidth;
+        //this.canvas.height = window.innerHeight;
+        this.canvas.width = 480;
+        this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -72,37 +82,35 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     myGameArea.clear();
-    myGamePiece.newPos();
-    myGamePiece.update();
-    tileset1.update();
-}
-
-function moveup() {
-    myGamePiece.speedY = -1; 
-}
-
-function movedown() {
-    myGamePiece.speedY = 1; 
+    soobin.update();
+    yeonjun.update();
+    beomgyu.update();
+    taehyun.update();
+    hueningkai.update();
+    arrow.newPos();
+    arrow.update();
 }
 
 function moveleft() {
-    myGamePiece.speedX = -1; 
+    arrow.x += 70;
+    //arrow.speedX = -7.5; 
 }
 
 function moveright() {
-    myGamePiece.speedX = 1; 
+    arrow.x -= 70;
+    //arrow.speedX = 7.5; 
 }
 
 function clearmove() {
-    myGamePiece.speedX = 0; 
-    myGamePiece.speedY = 0; 
+    arrow.speedX = 0; 
+    arrow.speedY = 0; 
 }
 </script>
 <div style="text-align:center;width:480px;">
-  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
-  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
-  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
-  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+  <img src="upArrow.png" width="55" height="29" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()"><br><br>
+  <img src="leftArrow.png" width="29" height="55" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()" style="padding-right: 100px;">
+  <img src="rightArrow.png" width="29" height="55" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()"><br><br>
+  <img src="downArrow.png" width="55" height="29" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">
 </div>
 
 </body>
