@@ -18,7 +18,7 @@ var beomgyu;
 var taehyun;
 var hueningkai;
 var arrow;
-
+var member;
 
 function startGame() {
     soobin = new component(45, 70, "soobin.png", 70, 200, "image");
@@ -33,10 +33,10 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        //this.canvas.width = 480;
-        //this.canvas.height = 480;
+        //this.canvas.width = window.innerWidth;
+        //this.canvas.height = window.innerHeight;
+        this.canvas.width = 480;
+        this.canvas.height = 520;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -53,12 +53,30 @@ var myGameArea = {
 myGameArea.context = addEventListener("click", onClick, false);
 
 function onClick(e) {
-    posx = e.clientX;
-    posy = e.clientY;
-    if(posx < 240){
-        console.log("oi")
+    posX = e.clientX;
+    posY = e.clientY;
+    if(posX > 70 && posX <= 70+45 && posY > 200 && posY <= 200+70){
+        console.log("soobin")
+        arrow = new component(30, 30, "arrow.png", 80, 160, "image");
+        member = 1;
+    } else if (posX > 140 && posX <= 140+45 && posY > 200 && posY <= 200+70){
+        console.log("yeonjun")
+        arrow = new component(30, 30, "arrow.png", 150, 160, "image");
+        member = 2;
+    } else if (posX > 210 && posX <= 210+45 && posY > 200 && posY <= 200+70){
+        console.log("beomgyu")
+        arrow = new component(30, 30, "arrow.png", 220, 160, "image");
+        member = 3;
+    } else if (posX > 280 && posX <= 280+45 && posY > 200 && posY <= 200+70){
+        console.log("taehyun")
+        arrow = new component(30, 30, "arrow.png", 290, 160, "image");
+        member = 4;
+    } else if (posX > 350 && posX <= 350+45 && posY > 200 && posY <= 200+70){
+        console.log("hueningkai")
+        arrow = new component(30, 30, "arrow.png", 360, 160, "image");
+        member = 5;
     } else {
-        console.log("tchau")
+
     }
     var element = myGameArea.canvas;
 }
@@ -70,9 +88,7 @@ function component(width, height, color, x, y, type) {
         this.image.src = color;
     }
     this.width = width;
-    this.height = height;
-    this.speedX = 0;
-    this.speedY = 0;    
+    this.height = height;    
     this.x = x;
     this.y = y;    
     this.update = function() {
@@ -87,10 +103,6 @@ function component(width, height, color, x, y, type) {
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
-    this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY;        
-    }
 }
 
 function updateGameArea() {
@@ -100,25 +112,17 @@ function updateGameArea() {
     beomgyu.update();
     taehyun.update();
     hueningkai.update();
-    arrow.newPos();
     arrow.update();
     myGameArea.context.fillText("Choose your player",190,320);
 }
 
-function moveleft() {
-    arrow.x += 70;
-    //arrow.speedX = -7.5; 
+function newCanvas(){
+    console.log(member);
+    myGameArea.clear();
+    myGameArea.stop();
+    myGameArea.context = removeEventListener("click", onClick, false);
 }
 
-function moveright() {
-    arrow.x -= 70;
-    //arrow.speedX = 7.5; 
-}
-
-function clearmove() {
-    arrow.speedX = 0; 
-    arrow.speedY = 0; 
-}
 </script>
 <div style="text-align:center;width:480px;">
   <!--
@@ -127,6 +131,7 @@ function clearmove() {
   <img src="rightArrow.png" width="29" height="55" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()"><br><br>
   <img src="downArrow.png" width="55" height="29" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">
   -->
+  <button onclick="newCanvas()"> NEXT </button>
 </div>
 
 </body>
