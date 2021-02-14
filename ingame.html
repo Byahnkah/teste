@@ -12,14 +12,17 @@ canvas {
 <body onload="startGame()">
 <script>
 
+var choose
+
 function startGame() {
-    soobin = new component(45, 70, "soobin.png", 70, 200, "image");
-    yeonjun = new component(45, 70, "yeonjun.png", 140, 200, "image");
-    beomgyu = new component(45, 70, "beomgyu.png", 210, 200, "image");
-    taehyun = new component(45, 70, "taehyun.png", 280, 200, "image");
-    hueningkai = new component(45, 70, "hueningkai.png", 350, 200, "image");
+    soobin = new component(90, 140, "soobin.png", 20, 320, "image");
+    yeonjun = new component(90, 140, "yeonjun.png", 20, 320, "image");
+    beomgyu = new component(90, 140, "beomgyu.png", 20, 320, "image");
+    taehyun = new component(90, 140, "taehyun.png", 20, 320, "image");
+    hueningkai = new component(90, 140, "hueningkai.png", 20, 320, "image");
     myGameArea.start();
-    console.log(localStorage.getItem("storageName"));
+    choose = sessionStorage.getItem("storageName");
+    console.log(choose);
 }
 
 var myGameArea = {
@@ -76,11 +79,21 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     myGameArea.clear();
-    soobin.update();
-    yeonjun.update();
-    beomgyu.update();
-    taehyun.update();
-    hueningkai.update();
+    if (choose == 1){
+        soobin.update();
+    }
+    if (choose == 2){
+        yeonjun.update();
+    }
+    if (choose == 3){
+        beomgyu.update();
+    }
+    if (choose == 4){
+        taehyun.update();
+    }
+    if (choose == 5){
+        hueningkai.update();
+    }
 }
 
 //function newCanvas(){

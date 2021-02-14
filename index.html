@@ -76,10 +76,10 @@ function onClick(e) {
         arrow = new component(30, 30, "arrow.png", 360, 160, "image");
         member = 5;
     } else {
-
+        
     }
     var element = myGameArea.canvas;
-    localStorage.setItem("storageName",member);
+    sessionStorage.setItem("storageName",member);
 }
 
 function component(width, height, color, x, y, type) {
